@@ -34,11 +34,6 @@ EEPose = [];
 figure('units','normalized','outerposition',[0 0 1 1],'color','w')
 LC1 = 1;  % Loop Condition
 nu = 1;
-% xx = linspace(-100,100,10);
-% yy = linspace(1,100,10);
-% zz = linspace(200,200,10);
-% for i = 1:10
-%     TargetPoint = [xx(i) yy(i) zz(i)]';
 
 while LC1
     clf
@@ -92,4 +87,3 @@ while LC1
     end
 
 end
-% end
