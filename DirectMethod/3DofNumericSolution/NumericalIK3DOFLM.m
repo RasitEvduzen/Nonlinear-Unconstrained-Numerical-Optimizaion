@@ -12,7 +12,7 @@ d     = [d1,0,0,0];
 theta  = [0 90 90]';    % Home Pose [0 90 90] ->  XYZ [-100 0 200]
 s = 10;  % Step Size
 % TargetPoint = [100 150 200]';  % External Singularity
-TargetPoint = [200 0 100]';
+TargetPoint = [100 50 100]';
 
 
 
@@ -57,8 +57,8 @@ while LC1
 
     % Optimization Algorithm Levenberg Marquardt
     y = f(theta,a2,a3,d1);             % Calculate FK value
-    e = [TargetPoint - y];             % Calculate Error
     Jr = J(theta,a2,a3,d1);            % Calculate Jacobian
+    e = [TargetPoint - y];             % Calculate Error
     f1 = e'*e;
     LC2 = 1;
     while LC2
