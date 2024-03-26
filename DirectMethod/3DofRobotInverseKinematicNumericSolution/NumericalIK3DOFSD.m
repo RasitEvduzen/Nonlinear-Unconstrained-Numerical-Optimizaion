@@ -1,5 +1,5 @@
 clc,clear all,close all,warning off;
-% 3DOF Robotic Arm Inverse Kinematics via Levenberg Marquartd
+% 3DOF Robotic Arm Inverse Kinematics via Steepest Descent
 % 18-Mar-2024
 % Written By Rasit.
 %%  Numerical Inverse Kinematic Simulation
