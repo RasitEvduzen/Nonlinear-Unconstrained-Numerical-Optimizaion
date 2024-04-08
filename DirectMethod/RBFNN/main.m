@@ -4,11 +4,11 @@ clc,close,clear all;
 % Written By: Rasit Evduzen
 % 08-Apr-2024
 %% Generate Data
-Ts = 5e-2;
+Ts = 1e-2;
 tspan = (-3:Ts:3)';  % Input Data
 weight = 2*rand-1; % Trainable Parameter
 center = 2*rand-1; % Trainable Parameter
-sigma = rand+.5; % Trainable Parameter
+sigma = rand-.5; % Trainable Parameter
 
 func = @(w1,w2,w3,x) w1*exp(-(x + w2).^2/(w3^2));  % Rbf Function!
 y = func(weight,center,sigma,tspan);  % Output Data
@@ -19,11 +19,10 @@ Jacobian = @(w1,w2,w3,x) [ -exp(-(w2 + x).^2/w3^2),...
 
 % GO GO GO Optimization!!!
 
-x = 0.2*rand(3,1);  % Start Random Parameter
+x = .5*rand(3,1);  % Start Random Parameter
 Xparam = [];    % Param Vector
 Error = [];
 s = 9e-3;       % Step Size
-
 LoopCount = 1;
 while 1
     LoopCount = LoopCount + 1;
@@ -33,7 +32,7 @@ while 1
     p = -Jacobian(x(1),x(2),x(3),tspan); % Negative Gradient Direction
     x = x + s*p'*e;   % Parameter Update
     Xparam = [Xparam, x];
-    Error = [Error, e];
+    Error = [Error, norm(e)];
     display("||error||: "+num2str(norm(e)))
     if norm(e) < 1e-2
         break
@@ -47,7 +46,7 @@ for i =1:4:LoopCount-1
     subplot(211)
     scatter(tspan,y,"ro"),hold on,grid on
     plot(tspan,func(Xparam(1,i),Xparam(2,i),Xparam(3,i),tspan),'k',LineWidth=2)
-    title(["RBF Function Nonlinear Optimization via Gradient Descent"; "||Error|| -> "+num2str(norm(Error(i)))])
+    title(["RBF Function Nonlinear Optimization via Gradient Descent"; "||Error|| -> "+num2str(Error(i))])
 
     subplot(212)
     yline(weight,"r",LineWidth=2),hold on,grid on
@@ -57,6 +56,6 @@ for i =1:4:LoopCount-1
     plot(Xparam(2,1:i),'k--',LineWidth=2)
     plot(Xparam(3,1:i),'k--',LineWidth=2)
     title(["Parameters"; "Number of iteration-> "+num2str(i)])
-
+    
     drawnow
 end
