@@ -22,7 +22,7 @@ Jacobian = @(w1,w2,w3,x) [ -exp(-(w2 + x).^2/w3^2),...
 x = .5*rand(3,1);  % Start Random Parameter
 Xparam = [];    % Param Vector
 Error = [];
-s = 9e-3;       % Step Size
+s = 5e-4;       % Step Size
 LoopCount = 1;
 while 1
     LoopCount = LoopCount + 1;
@@ -41,7 +41,7 @@ end
 
 %% Plot Result
 figure('units','normalized','outerposition',[0 0 1 1],'color','w')
-for i =1:4:LoopCount-1
+for i =1:10:LoopCount-1
     clf
     subplot(211)
     scatter(tspan,y,"ro"),hold on,grid on
