@@ -17,7 +17,7 @@ yddot = @(x) 6*x + 8;
 
 figure('units','normalized','color','w')
 gif('Newton.gif')
-for i = 1: 1e6
+for i = 1:1e6
     clf
     plot(x,y(x)),grid on, hold on
     plot(x,ydot(x),"b--")
